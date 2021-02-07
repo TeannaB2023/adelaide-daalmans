@@ -1,8 +1,6 @@
 package org.howard.edu.lsp.assignment2.combination;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
-import java.util.Set;
 import java.util.HashSet;
 
 
@@ -26,6 +24,10 @@ public class Combination {
 	   * @param target The integer for the target sum of all the combinations. 
 	   */
 	public Combination (ArrayList<Integer> elements, Integer target) {
+		if (elements == null || target == null) {
+			this.combinations.add(null);
+			return;
+		}
 		this.elements = elements;
 		this.target = target;
 	}
@@ -33,29 +35,30 @@ public class Combination {
 	/**
 	   * Finds and Calculates the list of element indices whose elements add up to equal the target number.
 	   *
-	   * @param None However, all the variable that are used are all the instance variables and the sum method 
+	   * @param None However, all the variables that are used are all the instance variables and the sum,
+	   *  resetCombo, and copyCombo methods 
+	   * 
+	   * @return combinations Set which contains unordered lists of combination indices
 	   */
 	public HashSet<ArrayList<Integer>> calculateCombination(){
-		
-		for (int i = 0; i < this.elements.size(); i++) {
-			this.combination.clear();
+		int length = this.elements.size();
+		for (int i = 0; i < length; i++) {
+			this.resetCombo(i);
 			int initialElement = this.elements.get(i);
-			this.combination.add(i);
 			if (initialElement == this.target) {
 				this.combinations.add(this.copyCombo());
 				continue;
-			} else if (initialElement > this.target || i == this.elements.size() -1) {
+			} else if (i == length -1) {
 				continue;
 			}
 			int j = i + 1;
-			while(j < this.elements.size()) {
-				for(int k = j; k < this.elements.size(); k++) {
+			while (j < length) {
+				for (int k = j; k < length; k++) {
 					int addingElement = this.elements.get(k);
 					if (addingElement + this.sum() == this.target) {
 						this.combination.add(k);
 						this.combinations.add(this.copyCombo());
-						this.combination.clear();
-						this.combination.add(i);
+						this.resetCombo(i);
 						break;
 					} else if (addingElement + this.sum() > this.target) {
 						continue;
@@ -64,37 +67,54 @@ public class Combination {
 					}
 				}
 				j++;
-				this.combination.clear();
-				this.combination.add(i);
+				this.resetCombo(i);
 			}
-			System.out.println(this.combination);
 		}
 		return this.combinations;
 	}
 	
 	/**
-	   * Calculates the sum of the values that are indexed in the combination list
+	   * Calculates the sum of the values that are indexed in the combination list.
 	   *
-	   * @param None However, all the variable that are used are the instance variables (combination and elements)
+	   * @param None However, all the variables that are used are the instance variables (combination and elements)
+	   * 
+	   * @return sum an integer of all the values referenced in the combination list
 	   */
 	private int sum() {
 		if (this.combination.size() == 1) {
 			return this.elements.get(this.combination.get(0));
 		}
-		
 		int sum = 0;
-		//ListIterator<Integer> indexListIterator = this.combination.listIterator();
 		for (int i = 0; i < this.combination.size(); i++) {
 			sum = sum + this.elements.get(this.combination.get(i));
 		}
 		return sum;
 	}
 	
+	/**
+	   * Makes a deep copy of the combination, the method is usually called to add a viable combo 
+	   * to the combinations set.
+	   *
+	   * @param None However, the combination instance variable is used
+	   * 
+	   * @return copyCombo an ArrayList of the deep copied combination list
+	   */
 	private ArrayList<Integer> copyCombo(){
 		ArrayList<Integer> copyCombo = new ArrayList<Integer>(this.combination.size());
-		for(Integer i : this.combination){
-	        copyCombo.add(i);
+		for (Integer index : this.combination){
+	        copyCombo.add(index);
 	    }
 		return copyCombo;
+	}
+	
+	/**
+	   * Resets the combination variable to only have the starting element index.
+	   *
+	   * @param i the integer value of the current starting index in the combo algorithm
+	   * In addition, the combination instance variable is used 
+	   */
+	private void resetCombo(int index) {
+		this.combination.clear();
+		this.combination.add(index);
 	}
 }
