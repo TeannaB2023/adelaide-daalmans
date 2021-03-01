@@ -41,37 +41,45 @@ public class IntegerSet {
 
 	// Returns the largest item in the set; Throws a IntegerSetException if the set is empty 
 	public int largest() throws IntegerSetException {
-		if (this.set.size() == 0) {
+		try {
+			if (this.set.size() == 0) {
 			// Can put exception here
-			return 0;
-		} else if (this.set.size() == 1) {
-			return this.set.get(0);
-		}
-		int largest = this.set.get(0);
-		for (int i = 1; i < this.set.size(); i++) {
-			if (this.set.get(i) > largest) {
-				largest = this.set.get(i);
+				return 0;
+			} else if (this.set.size() == 1) {
+				return this.set.get(0);
 			}
+			int largest = this.set.get(0);
+			for (int i = 1; i < this.set.size(); i++) {
+				if (this.set.get(i) > largest) {
+					largest = this.set.get(i);
+				}
+			}
+			return largest;
+		} catch (IntegerSetException integerIssue) {
+			System.out.println(integerIssue.message);	
 		}
-		return largest;
 	} 
 
 	// Returns the smallest item in the set; Throws a IntegerSetException if the set is empty
 	public int smallest() throws IntegerSetException {
-		if (this.set.size() == 0) {
+		try {
+			if (this.set.size() == 0) {
 			// Can put exception here
-			return 0;
-		} else if (this.set.size() == 1) {
-			return this.set.get(0);
-		}
-		int smallest = this.set.get(0);
-		for (int i = 1; i < this.set.size(); i++) {
-			if (this.set.get(i) < smallest) {
-				smallest = this.set.get(i);
+				return 0;
+			} else if (this.set.size() == 1) {
+				return this.set.get(0);
 			}
+			int smallest = this.set.get(0);
+			for (int i = 1; i < this.set.size(); i++) {
+				if (this.set.get(i) < smallest) {
+					smallest = this.set.get(i);
+				}
+			}
+			return smallest;
+		} catch (IntegerSetException integerIssue) {
+			System.out.println(integerIssue.message);
 		}
-		return smallest;
-	};
+	}
 
 	// Adds an item to the set or does nothing it already there	
 	public void add(int item) {
@@ -126,5 +134,5 @@ public class IntegerSet {
 	public String toString() {
 		return this.set.toString();
 	}	// return String representation of your set
-	}
+}
 
