@@ -5,10 +5,15 @@ import java.util.Arrays;
 import org.howard.edu.lsp.assignment4.implementation.IntegerSet;
 import org.howard.edu.lsp.assignment4.implementation.IntegerSetException;
 
+/**
+ * IntegerSet class will be tested here  
+ * @author barre 
+ * aka Teanna Barrett
+ */
+
 public class DriverClass4 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		// Local variables for tests
 		IntegerSet integerSet1 = new IntegerSet(Arrays.asList(1,2,3,4,5,6));
 		IntegerSet integerSet2 = new IntegerSet(Arrays.asList(5,5,15,10));
@@ -24,7 +29,7 @@ public class DriverClass4 {
 		// Test 3 for equal method of IntegerSet (False and True)
 		equalsTest(integerSet1, integerSet2);
 		
-		//Test 4 for contains method of IntegerSet (False and True)
+		// Test 4 for contains method of IntegerSet (False and True)
 		containsTest(integerSet1);
 		
 		// Test 5 for largest method of IntegerSet (Single entry, empty set, more than one entry)	
@@ -56,6 +61,10 @@ public class DriverClass4 {
 				
 	}
 	
+	/**
+	   * Test for clear method of IntegerSet
+	   * 
+	   */
 	public static void clearTest() {
 		printBreak();
 		IntegerSet integerSet = new IntegerSet(Arrays.asList(1,2,3,4,5,6));
@@ -64,6 +73,12 @@ public class DriverClass4 {
 		System.out.printf("Set After: %s\n", integerSet.toString());
 	}
 	
+	/**
+	   * Test 2 for length method of IntegerSet (Non-repeating and repeating input)
+	   * 
+	   * @param repeatSet IntegerSet for testing repeating entries
+	   * @param standardSet IntegerSet for testing standard entries
+	   */
 	public static void lengthTest(IntegerSet repeatSet, IntegerSet standardSet) {
 		printBreak();
 		int expected_repeat_length = repeatSet.getSet().size();
@@ -71,6 +86,12 @@ public class DriverClass4 {
 		System.out.printf("Test 2: Length method of IntegerSet\nInteger sets: %s and %s\nExpected outputs: %s and %s\nActual outputs: %s and %s\n", repeatSet.toString(), standardSet.toString(), expected_repeat_length, expected_standard_length, repeatSet.length(), standardSet.length());
 	}
 	
+	/**
+	   * Test 3 for equal method of IntegerSet (False and True)
+	   * 
+	   * @param integerSet1 IntegerSet for equals test
+	   * @param integerSet2 IntegerSet for equals test
+	   */
 	public static void equalsTest(IntegerSet integerSet1, IntegerSet integerSet2) {
 		printBreak();
 		boolean solution1 = integerSet1.equals(integerSet2);
@@ -78,6 +99,11 @@ public class DriverClass4 {
 		System.out.printf("Test 3: Equals method of IntegerSet\n3a: %s and %s Expected: false Actual: %s\n3b: %s and %s Expected: true Actual: %s\n", integerSet1.toString(), integerSet2.toString(), solution1, integerSet1.toString(), integerSet1.toString(), solution2);
 	}
 	
+	/**
+	   * Test 4 for contains method of IntegerSet (False and True)
+	   * 
+	   * @param integerSet IntegerSet instance for testing
+	   */
 	public static void containsTest(IntegerSet integerSet) {
 		printBreak();
 		int input1 = 6;
@@ -87,6 +113,13 @@ public class DriverClass4 {
 		System.out.printf("Test 4: Contains method of IntegerSet\n4a:%s contains %s Expected: true Actual: %s\n4b: %s contains %s Expected: false Actual: %s\n", integerSet.toString(), input1, solution1, integerSet.toString(), input2, solution2);
 	}
 	
+	/**
+	   * Test 5 for largest method of IntegerSet (Single entry, empty set, more than one entry)
+	   * 
+	   * @param singleSet IntegerSet instance for a set with a single set
+	   * @param emptySet IntegerSet instance for an empty set
+	   * @param standardSet IntegerSet instance for standard set
+	   */
 	public static void largestTest(IntegerSet singleSet, IntegerSet emptySet, IntegerSet standardSet) {
 		printBreak();
 		IntegerSet[] sets = {singleSet, emptySet, standardSet};
@@ -104,6 +137,13 @@ public class DriverClass4 {
 		}
 	}
 	
+	/**
+	   * Test 6 for smallest method of IntegerSet (Single entry, empty set with IntegerSet exception, more than one entry)
+	   * 
+	   * @param singleSet IntegerSet instance for a set with a single set
+	   * @param emptySet IntegerSet instance for an empty set
+	   * @param standardSet IntegerSet instance for standard set 
+	   */
 	public static void smallestTest(IntegerSet singleSet, IntegerSet emptySet, IntegerSet standardSet) {
 		printBreak();
 		IntegerSet[] sets = {singleSet, emptySet, standardSet};
@@ -121,6 +161,11 @@ public class DriverClass4 {
 		}
 	}
 	
+	/**
+	   * Test 7 Add method (new integer and repeated integer)
+	   * 
+	   * integerSet IntegerSet instance for testing
+	   */
 	public static void addTest(IntegerSet integerSet) {
 		printBreak();
 		int repeat_add = 1;
@@ -132,6 +177,12 @@ public class DriverClass4 {
 		System.out.printf("7.2: Add %s to %s Expected: [1, 2, 3, 4, 5, 6, 0] Actual: %s\n", new_add, integerSet.toString(), workingSet.toString());
 	}
 	
+	/**
+	   * Test 8 Remove method (new integer and repeated integer)
+	   * 
+	   * integerSet IntegerSet instance for testing
+	   * 
+	   */
 	public static void removeTest(IntegerSet integerSet) {
 		printBreak();
 		int present_remove = 1;
@@ -143,6 +194,10 @@ public class DriverClass4 {
 		System.out.printf("8.2: Remove %s from %s Expected: [2, 3, 4, 5, 6] Actual: %s\n", present_remove, integerSet.toString(), workingSet.toString());
 	}
 	
+	/**
+	   * Test 9 Union method (standard sets, empty parameter set, sets with shared values)
+	   * 
+	   */
 	public static void unionTest() {
 		printBreak();
 		// standard sets
@@ -168,6 +223,10 @@ public class DriverClass4 {
 		
 	}
 	
+	/**
+	   * Test 10 Intersection method (standard sets, no intersection parameter set, empty parameter set)
+	   * 
+	   */
 	public static void intersectTest() {
 		printBreak();
 		// No intersection sets
@@ -193,6 +252,10 @@ public class DriverClass4 {
 				
 	}
 	
+	/**
+	   * Test 11 Difference method (standard sets, empty parameter set, sets with shared values)
+	   * 
+	   */
 	public static void diffTest() {
 		printBreak();
 		// No Intersection sets
@@ -218,11 +281,22 @@ public class DriverClass4 {
 				
 	}
 	
+	/**
+	   * Test 12 isEmpty method (Empty set and Standard set)
+	   * 
+	   * @param emptySet IntegerSet instance for testing an empty set
+	   * @param standardSet IntegerSet for testing a standard set
+	   */
 	public static void isEmptyTest(IntegerSet emptySet, IntegerSet standardSet) {
 		printBreak();
 		System.out.printf("Test 12: isEmpty method of IntegerSet\nInteger sets: %s and %s\nExpected outputs: true and false\nActual outputs: %s and %s\n", emptySet.toString(), standardSet.toString(), emptySet.isEmpty(), standardSet.isEmpty());
 	}
 	
+	/**
+	   * Test 13 toString method (Checks the type for standard set)
+	   * 
+	   * @param integerSet IntegerSet instance for testing
+	   */
 	public static void toStringTest(IntegerSet integerSet) {
 		printBreak();
 		boolean result;
@@ -234,6 +308,9 @@ public class DriverClass4 {
 		System.out.printf("Test 13: toString method of IntegerSet\nThe type for integerSet.toString() is a String Expected: true Actual: %s\n", result);
 	}
 	
+	/**
+	   *  Prints line break for test printouts
+	   */
 	public static void printBreak() {
 		System.out.println("\n--------------------\n");
 	}
