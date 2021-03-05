@@ -73,7 +73,7 @@ public class IntegerSet {
 	public int smallest() throws IntegerSetException {
 		if (this.isEmpty()) {
 		// Can put exception here
-			throw new IntegerSetException("IntegerSet Exception: The list is empty so the smallest number cannot be found");
+			throw new IntegerSetException("IntegerSetException: The list is empty so the smallest number cannot be found");
 		} else if (this.length() == 1) {
 			return this.set.get(0);
 		}
@@ -100,12 +100,14 @@ public class IntegerSet {
 			int position = this.set.indexOf(item);
 			this.set.remove(position);
 		} 
-		return;
 	} 
 
 	// Set union
 	public void union(IntegerSet intSetb) {
 		List<Integer> setB = intSetb.getSet();
+		if (intSetb.isEmpty()) {
+			return;
+		}
 		for (int i = 0; i < intSetb.length(); i++) {
 			if (this.contains(setB.get(i))) {
 				continue;
@@ -116,12 +118,14 @@ public class IntegerSet {
 
 	// Set intersection
 	public void intersect(IntegerSet intSetb) {
+		List<Integer> intersectingSet = new ArrayList<Integer>();
 		for (int i = 0; i < this.length(); i++) {
 			int set_value = this.set.get(i);
-			if (!(intSetb.contains(set_value))) {
-				this.remove(set_value);
+			if (intSetb.contains(set_value)) {
+				intersectingSet.add(set_value);
 			}
 		}
+		this.set = intersectingSet;
 	} 
 
 	// Set difference, i.e., s1 –s2
