@@ -73,7 +73,7 @@ public class IntegerSet {
 	public int smallest() throws IntegerSetException {
 		if (this.isEmpty()) {
 		// Can put exception here
-			throw new IntegerSetException("The list is empty so the largest number cannot be found");
+			throw new IntegerSetException("The list is empty so the smallest number cannot be found");
 		} else if (this.length() == 1) {
 			return this.set.get(0);
 		}
