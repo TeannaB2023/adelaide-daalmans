@@ -40,7 +40,7 @@ public class IntegerSet {
 			return false;
 		}
 		for (int i = 0; i < this.length(); i++) {
-			if (b.contains(this.set.get(i))){
+			if (!(b.contains(this.set.get(i)))){
 				return false;
 			}
 		}
@@ -56,7 +56,7 @@ public class IntegerSet {
 	public int largest() throws IntegerSetException {
 		if (this.isEmpty()) {
 		// Can put exception here
-			throw new IntegerSetException("The list is empty so the largest number cannot be found");
+			throw new IntegerSetException("IntegerSetException: The list is empty so the largest number cannot be found");
 		} else if (this.length() == 1) {
 			return this.set.get(0);
 		}
@@ -73,7 +73,7 @@ public class IntegerSet {
 	public int smallest() throws IntegerSetException {
 		if (this.isEmpty()) {
 		// Can put exception here
-			throw new IntegerSetException("The list is empty so the smallest number cannot be found");
+			throw new IntegerSetException("IntegerSet Exception: The list is empty so the smallest number cannot be found");
 		} else if (this.length() == 1) {
 			return this.set.get(0);
 		}
@@ -97,8 +97,10 @@ public class IntegerSet {
 	// Removes an item from the set or does nothing if not there
 	public void remove(int item) {
 		if (this.contains(item)) {
-			this.set.remove(item);
-		}
+			int position = this.set.indexOf(item);
+			this.set.remove(position);
+		} 
+		return;
 	} 
 
 	// Set union
@@ -141,5 +143,6 @@ public class IntegerSet {
 	public String toString() {
 		return this.set.toString();
 	}	// return String representation of your set
+	
 }
 

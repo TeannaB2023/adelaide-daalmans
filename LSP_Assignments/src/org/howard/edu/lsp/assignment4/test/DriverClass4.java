@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.howard.edu.lsp.assignment4.implementation.IntegerSet;
+import org.howard.edu.lsp.assignment4.implementation.IntegerSetException;
 
-public class DriverClass4{
+public class DriverClass4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -16,70 +17,149 @@ public class DriverClass4{
 		IntegerSet integerSet2 = new IntegerSet(Arrays.asList(5,5,15,10));
 		IntegerSet integerSet3 = new IntegerSet(Arrays.asList(-5));
 		IntegerSet integerSet4 = new IntegerSet(Arrays.asList());
-		boolean solution1, solution2, solution3;
-		int input1, input2;
 				
 		// Test for clear method of IntegerSet
-				
+		clearTest();	
+		
 		// Test 2 for length method of IntegerSet (Non-repeating and repeating input)
-				
+		lengthTest(integerSet1, integerSet2);
+		
 		// Test 3 for equal method of IntegerSet (False and True)
-				
-		// Test 4 for contains method of IntegerSet (False and True)
-		input1 = 6;
-		input2 = -5;
-		solution1 = integerSet1.contains(input1);
-		solution2 = integerSet1.contains(input2);
-		System.out.printf("Test 4: Contains method of IntegerSet\n4a:%s contains %s? %s\n 4b: %s contains %s? %s\n", integerSet1.toString(), input1, solution1, integerSet1.toString(), input2, solution2);
-				
+		equalsTest(integerSet1, integerSet2);
+		
+		//Test 4 for contains method of IntegerSet (False and True)
+		containsTest(integerSet1);
+		
 		// Test 5 for largest method of IntegerSet (Single entry, empty set, more than one entry)	
-		System.out.printf("Test 5: Largest method of IntegerSet\n5a: Largest value in single element set %s is %s\n5b: Largest value in empty set is %s\n5c: largest value of standard set %s is %s\n", integerSet4.toString(), integerSet4.largest(), integerSet3.toString(), integerSet3.largest(), integerSet2.toString(), integerSet2.largest());
+		largestTest(integerSet3, integerSet4, integerSet1);
 		
 		// Test 6 for smallest method of IntegerSet (Single entry, empty set with IntegerSet exception, more than one entry)
-		System.out.printf("Test 5: Smallest method of IntegerSet\n5a: Smallest value in single element set %s is %s\n5b: Smallest value in empty set is %s\n5c: Smallest value of standard set %s is %s\n", integerSet4.toString(), integerSet4.smallest(), integerSet3.toString(), integerSet3.smallest(), integerSet2.toString(), integerSet2.smallest());
+		smallestTest(integerSet3, integerSet4, integerSet1);
 		
 		// Test 7 Add method (new integer and repeated integer)
-		input1 = 1;
-		input2 = 0;
-		integerSet1.add(input1);
-		System.out.printf("Test 6: Add method for Integer Set\n6a: %s Input target: %s and Output combinations: %s\n", inputElements, inputTarget, solution);
-		integerSet1.add(input2);	
-		System.out.printf("Input list: %s Input target: %s and Output combinations: %s\n", inputElements, inputTarget, solution);
+		addTest(integerSet1);
 		
 		// Test 8 Remove method (present integer and not-there integer)
-		System.out.printf("Input list: %s Input target: %s and Output combinations: %s\n", inputElements, inputTarget, solution);
+		removeTest(integerSet1);
 		
 		// Test 9 Union method (standard sets, empty parameter set, sets with shared values)
-		inputElements = new ArrayList<Integer>(Arrays.asList(1,-1,3,-3,5,-5));
-		inputTarget = 0;
-		solution = calculateCombination(inputElements, inputTarget);	
-		System.out.printf("Input list: %s Input target: %s and Output combinations: %s\n", inputElements, inputTarget, solution);
 		
 		// Test 10 Intersection method (standard sets, no intersection parameter set, empty parameter set)
-		inputElements = new ArrayList<Integer>(Arrays.asList(1,-1,3,-3,5,-5));
-		inputTarget = 0;
-		solution = calculateCombination(inputElements, inputTarget);	
-		System.out.printf("Input list: %s Input target: %s and Output combinations: %s\n", inputElements, inputTarget, solution);
+		
+		// Test 11 Difference method (standard sets, empty parameter set, sets with shared values)
+		
+		// Test 12 isEmpty method (Empty set and Standard set)
+		isEmptyTest(integerSet4, integerSet2);
+		
+		// Test 13 toString method (Checks the type for standard set)
+		toStringTest(integerSet3);
 				
 	}
 	
-	public void clearTest(IntegerSet integerSet) {
+	public static void clearTest() {
+		IntegerSet integerSet = new IntegerSet(Arrays.asList(1,2,3,4,5,6));
 		System.out.printf("Test 1: Clear IntegerSet\nSet Before: %s ", integerSet.toString());
 		integerSet.clear();
 		System.out.printf("Set After: %s\n", integerSet.toString());
 	}
 	
-	public void lengthTest(IntegerSet repeatSet, IntegerSet standardSet) {
+	public static void lengthTest(IntegerSet repeatSet, IntegerSet standardSet) {
 		int expected_repeat_length = repeatSet.getSet().size();
 		int expected_standard_length = standardSet.getSet().size();
 		System.out.printf("Test 2: Length method of IntegerSet\nInteger sets: %s and %s\nExpected outputs: %s and %s\nActual outputs: %s and %s\n", repeatSet.toString(), standardSet.toString(), expected_repeat_length, expected_standard_length, repeatSet.length(), standardSet.length());
 	}
 	
-	public void equalTest(IntegerSet integerSet1, IntegerSet integerSet2) {
-		int solution1 = integerSet1.equals(integerSet2);
-		int solution2 = integerSet1.equals(integerSet1);
-		System.out.printf("Test 3: Equals method of IntegerSet\3a: %s and %s are equal? %s\n3b: %s and %s are equal? %s\n", integerSet1.toString(), integerSet2.toString(), solution1, integerSet1.toString(), integerSet1.toString(), solution2);
-	
+	public static void equalsTest(IntegerSet integerSet1, IntegerSet integerSet2) {
+		boolean solution1 = integerSet1.equals(integerSet2);
+		boolean solution2 = integerSet1.equals(integerSet1);
+		System.out.printf("Test 3: Equals method of IntegerSet\n3a: %s and %s Expected: false Actual: %s\n3b: %s and %s Expected: true Actual: %s\n", integerSet1.toString(), integerSet2.toString(), solution1, integerSet1.toString(), integerSet1.toString(), solution2);
 	}
-
+	
+	public static void containsTest(IntegerSet integerSet) {
+		int input1 = 6;
+		int input2 = -5;
+		boolean solution1 = integerSet.contains(input1);
+		boolean solution2 = integerSet.contains(input2);
+		System.out.printf("Test 4: Contains method of IntegerSet\n4a:%s contains %s Expected: true Actual: %s\n4b: %s contains %s Expected: false Actual: %s\n", integerSet.toString(), input1, solution1, integerSet.toString(), input2, solution2);
+	}
+	
+	public static void largestTest(IntegerSet singleSet, IntegerSet emptySet, IntegerSet standardSet) {
+		IntegerSet[] sets = {singleSet, emptySet, standardSet};
+		String[] expecteds = {"-5", "IntegerSetExcpetion", "6"};
+		System.out.printf("Test 5: Largest method of IntegerSet\n");
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+			System.out.printf("5.%s: %s Expected: %s Actual: %s\n", i+1, sets[i], expecteds[i], sets[i].largest());
+			
+			} catch (IntegerSetException integerE) {
+				System.out.printf("5.%s: %s Expected: %s Actual: %s\n", i+1, sets[i], expecteds[i], integerE.getMessage());
+				
+			}
+		}
+	}
+	
+	public static void smallestTest(IntegerSet singleSet, IntegerSet emptySet, IntegerSet standardSet) {
+		IntegerSet[] sets = {singleSet, emptySet, standardSet};
+		String[] expecteds = {"-5", "IntegerSetExcpetion", "1"};
+		System.out.printf("Test 6: Smallest method of IntegerSet\n");
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+			System.out.printf("6.%s: %s Expected: %s Actual: %s\n", i+1, sets[i], expecteds[i], sets[i].smallest());
+			
+			} catch (IntegerSetException integerE) {
+				System.out.printf("6.%s: %s Expected: %s Actual: %s\n", i+1, sets[i], expecteds[i], integerE.getMessage());
+				
+			}
+		}
+	}
+	
+	public static void addTest(IntegerSet integerSet) {
+		int repeat_add = 1;
+		int new_add = 0;
+		IntegerSet workingSet = new IntegerSet(Arrays.asList(1,2,3,4,5,6));
+		workingSet.add(repeat_add);
+		System.out.printf("Test 7: Add method for Integer Set\n7.1: Add %s to %s Expected: [1, 2, 3, 4, 5, 6] Actual: %s\n", repeat_add, integerSet.toString(), workingSet.toString());
+		workingSet.add(new_add);	
+		System.out.printf("7.2: Add %s to %s Expected: [1, 2, 3, 4, 5, 6, 0] Actual: %s\n", new_add, integerSet.toString(), workingSet.toString());
+	}
+	
+	public static void removeTest(IntegerSet integerSet) {
+		int present_remove = 1;
+		int new_remove = 0;
+		IntegerSet workingSet = new IntegerSet(Arrays.asList(1,2,3,4,5,6));
+		workingSet.remove(new_remove);
+		System.out.printf("Test 8: Remove method for Integer Set\n8.1: Remove %s from %s Expected: [1, 2, 3, 4, 5, 6] Actual: %s\n", new_remove, integerSet.toString(), workingSet.toString());
+		workingSet.remove(present_remove);	
+		System.out.printf("8.2: Remove %s from %s Expected: [2, 3, 4, 5, 6] Actual: %s\n", present_remove, integerSet.toString(), workingSet.toString());
+	}
+	
+	public static void unionTest(IntegerSet integerSet1, IntegerSet integerSet2, IntegerSet emptySet, IntegerSet integerSimSet1) {
+		
+	}
+	
+	public static void intersectionTest() {
+		
+	}
+	
+	public static void diffTest() {
+		
+	}
+	
+	public static void isEmptyTest(IntegerSet emptySet, IntegerSet standardSet) {
+		System.out.printf("Test 12: isEmpty method of IntegerSet\nInteger sets: %s and %s\nExpected outputs: true and false\nActual outputs: %s and %s\n", emptySet.toString(), standardSet.toString(), emptySet.isEmpty(), standardSet.isEmpty());
+	}
+	
+	public static void toStringTest(IntegerSet integerSet) {
+		boolean result;
+		if (integerSet.toString() instanceof String) {
+			result = true;
+		} else {
+			result = false;
+		}
+		System.out.printf("Test 13: toString method of IntegerSet\nThe type for integerSet.toString() is a String Expected: true Actual: %s\n", result);
+		
+		
+	}
 }
