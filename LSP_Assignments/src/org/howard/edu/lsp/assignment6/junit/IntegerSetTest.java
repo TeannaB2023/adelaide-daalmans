@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -55,7 +56,7 @@ class IntegerSetTest {
 	void testClear() {
 		standard.clear();
 		List<Integer> clear_set = standard.getSet();
-		assertNull(clear_set);
+		assertEquals(Arrays.asList(), clear_set);
 	}
 	
 	@Test
@@ -83,40 +84,84 @@ class IntegerSetTest {
 	}
 	
 	@Test
-	void largestTest() throws IntegerSetException {
+	@DisplayName("Test cases for largest with IntegerSetException")
+	void testLargest() throws IntegerSetException {
 		assertEquals(6, standard.largest());
+		assertEquals(15, three1.largest());
+		Throwable exception = assertThrows(IntegerSetException.class, () -> {empty.largest();});
+		assertEquals("IntegerSetException: The list is empty so the largest number cannot be found", exception.getMessage());
+	}
+	
+	@Test
+	@DisplayName("Test cases for smallest with IntegerSetException")
+	void testSmallest() throws IntegerSetException {
+		assertEquals(1, standard.smallest());
+		assertEquals(1, three1.smallest());
+		Throwable exception = assertThrows(IntegerSetException.class, () -> {empty.smallest();});
+		assertEquals("IntegerSetException: The list is empty so the smallest number cannot be found", exception.getMessage());
 	}
 	@Test
-	void smallestTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for add")
+	void testAdd() {
+		standard.add(1);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		standard.add(0);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 0), standard.getSet());
+	}
+	
+	@Test
+	@DisplayName("Test cases for remove")
+	void testRemove() {
+		standard.remove(0);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		standard.remove(1);
+		assertEquals(Arrays.asList(2, 3, 4, 5, 6), standard.getSet());
+	}
+	
+	@Test
+	@DisplayName("Test cases for union")
+	void testUnion() {
+		standard.union(standard);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.union(standard);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), empty.getSet());
+		standard.union(single);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, -5), standard.getSet());
 	}
 	@Test
-	void addTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for intersect")
+	void testIntersect() {
+		standard.intersect(standard);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.intersect(standard);
+		assertEquals(Arrays.asList(), empty.getSet());
+		standard.intersect(three2);
+		assertEquals(Arrays.asList(3, 4, 5), standard.getSet());
 	}
+	
 	@Test
-	void removeTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for diff")
+	void testDiff() {
+		standard.diff(empty);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.diff(standard);
+		assertEquals(Arrays.asList(), empty.getSet());
+		standard.diff(three2);
+		assertEquals(Arrays.asList(1, 2, 6), standard.getSet());
 	}
+	
 	@Test
-	void unionTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for isEmpty")
+	void testIsEmpty() {
+		assertTrue(empty.isEmpty());
+		assertFalse(standard.isEmpty());
 	}
+	
 	@Test
-	void intersectTest() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void diffTest() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void isEmptyTest() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void toStringTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for toString")
+	void testToString() {
+		String actual = standard.toString(); 
+		assertEquals("[1, 2, 3, 4, 5, 6]", actual);
 	}
 
 
