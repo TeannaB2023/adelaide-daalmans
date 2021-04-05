@@ -146,8 +146,8 @@ class IntegerSetTest {
 		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
 		empty.diff(standard);
 		assertEquals(Arrays.asList(), empty.getSet());
-		standard.diff(three2);
-		assertEquals(Arrays.asList(1, 2, 6), standard.getSet());
+		standard.diff(three1);
+		assertEquals(Arrays.asList(2, 3, 4, 6), standard.getSet());
 	}
 	
 	@Test
