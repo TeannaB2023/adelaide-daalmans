@@ -137,9 +137,9 @@ public class IntegerSet{
 		   * @param item int representation of integer to potentially remove to IntegerSet instance
 		   */
 		public void remove(int item) {
-			if (this.contains(item)) {
-				this.set.remove(new Integer(item));
-			} 
+			int position = this.set.indexOf(item);
+			this.set.remove(position);
+			
 		} 
 	 
 		/**
