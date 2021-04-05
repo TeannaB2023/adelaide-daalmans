@@ -94,7 +94,7 @@ class IntegerSetTest {
 	
 	@Test
 	@DisplayName("Test cases for smallest")
-	void smallestTest() throws IntegerSetException{
+	void testSmallest() throws IntegerSetException{
 		assertEquals(1, standard.smallest());
 		assertEquals(-5, single.smallest());
 		Throwable exception = assertThrows(IntegerSetException.class, () -> {empty.smallest();});
@@ -102,21 +102,45 @@ class IntegerSetTest {
 	}
 	
 	@Test
-	void addTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for add")
+	void testAdd() {
+		standard.add(1);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		standard.add(0);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 0), standard.getSet());
 	}
+	
 	@Test
-	void removeTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for remove")
+	void testRemove() {
+		standard.remove(0);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		standard.remove(1);
+		assertEquals(Arrays.asList(2, 3, 4, 5, 6), standard.getSet());
 	}
+	
 	@Test
-	void unionTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for union")
+	void testUnion() {
+		standard.union(empty);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.union(standard);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), empty.getSet());
+		standard.union(three2);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
 	}
+	
 	@Test
-	void intersectTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for intersect")
+	void testIntersect() {
+		standard.intersect(standard);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.intersect(standard);
+		assertEquals(Arrays.asList(), empty.getSet());
+		standard.intersect(three2);
+		assertEquals(Arrays.asList(3, 4, 5), standard.getSet());
 	}
+	
 	@Test
 	void diffTest() {
 		fail("Not yet implemented");

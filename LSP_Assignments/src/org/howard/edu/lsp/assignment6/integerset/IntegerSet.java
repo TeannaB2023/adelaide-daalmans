@@ -138,7 +138,9 @@ public class IntegerSet{
 		   */
 		public void remove(int item) {
 			int position = this.set.indexOf(item);
-			this.set.remove(position);
+			if (position >= 0) {
+				this.set.remove(position);
+			}
 			
 		} 
 	 
