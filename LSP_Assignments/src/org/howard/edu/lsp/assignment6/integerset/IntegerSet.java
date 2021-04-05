@@ -184,12 +184,14 @@ public class IntegerSet{
 		   * @param intSetb IntegerSet instance being compared
 		   */
 		public void diff(IntegerSet intSetb) {
+			List<Integer> result = new ArrayList<Integer>();
 			for (int i = 0; i < this.length(); i++) {
 				int set_value = this.set.get(i);
-				if (intSetb.contains(set_value)) {
-					this.remove(set_value);
+				if (!(intSetb.contains(set_value))) {
+					result.add(set_value);
 				}
 			}
+			this.set = result;
 		}
 	 
 		/**

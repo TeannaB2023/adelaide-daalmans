@@ -142,16 +142,28 @@ class IntegerSetTest {
 	}
 	
 	@Test
-	void diffTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for diff")
+	void testDiff() {
+		standard.diff(empty);
+		assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), standard.getSet());
+		empty.diff(standard);
+		assertEquals(Arrays.asList(), empty.getSet());
+		standard.diff(three2);
+		assertEquals(Arrays.asList(1, 2, 6), standard.getSet());
 	}
+	
 	@Test
-	void isEmptyTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for isEmpty")
+	void testIsEmpty() {
+		assertTrue(empty.isEmpty());
+		assertFalse(standard.isEmpty());
 	}
+	
 	@Test
-	void toStringTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for toString")
+	void testToString() {
+		assertEquals("[1, 2, 3, 4, 5, 6]", standard.toString());
+		assertEquals("[]", empty.toString());
 	}
 
 
