@@ -7,7 +7,7 @@ public class IntegerSetException extends Exception {
 	   * 
 	   * @param message String message for custom exception report
 	   */
-	IntegerSetException (String message){
+	public IntegerSetException (String message){
 		super(message);
 	}
 
