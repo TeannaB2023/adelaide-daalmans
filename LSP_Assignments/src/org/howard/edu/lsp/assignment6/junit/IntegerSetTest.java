@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -76,17 +77,30 @@ class IntegerSetTest {
 	}
 	
 	@Test
-	void containsTest() {
-		fail("Not yet implemented");
+	@DisplayName("Test cases for contains")
+	void testContains() {
+		assertTrue(standard.contains(1));
+		assertFalse(standard.contains(0));
 	}
+	
 	@Test
-	void largestTest() throws IntegerSetException{
-		fail("Not yet implemented");
+	@DisplayName("Test cases for largest")
+	void testLargest() throws IntegerSetException{
+		assertEquals(6, standard.largest());
+		assertEquals(-5, single.largest());
+		Throwable exception = assertThrows(IntegerSetException.class, () -> {empty.largest();});
+		assertEquals("IntegerSetException: The list is empty so the largest number cannot be found", exception.getMessage());
 	}
+	
 	@Test
+	@DisplayName("Test cases for smallest")
 	void smallestTest() throws IntegerSetException{
-		fail("Not yet implemented");
+		assertEquals(1, standard.smallest());
+		assertEquals(-5, single.smallest());
+		Throwable exception = assertThrows(IntegerSetException.class, () -> {empty.smallest();});
+		assertEquals("IntegerSetException: The list is empty so the smallest number cannot be found", exception.getMessage());
 	}
+	
 	@Test
 	void addTest() {
 		fail("Not yet implemented");
