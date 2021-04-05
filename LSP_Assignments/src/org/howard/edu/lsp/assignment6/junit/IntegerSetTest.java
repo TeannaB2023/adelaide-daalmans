@@ -1,22 +1,23 @@
+package org.howard.edu.lsp.assignment6.junit;
+
 /**
  * 
  */
-package org.howard.edu.lsp.assignment4.test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
-import org.howard.edu.lsp.assignment4.implementation.IntegerSet;
+import org.howard.edu.lsp.assignment6.integerset.IntegerSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author barre
  *
  */
-class Assignment4Test {
+class IntegerSetTest {
 
 	/**
 	 * @throws java.lang.Exception
@@ -43,8 +44,10 @@ class Assignment4Test {
 	}
 
 	@Test
-	void clearTest() {
-		fail("Not yet implemented");
+	void clearTest(IntegerSet standard1) {
+		standard1.clear();
+		List<Integer> clear_set = standard1.getSet();
+		assertNull(clear_set);
 	}
 	
 	@Test
