@@ -5,7 +5,6 @@ package org.howard.edu.lsp.assignment6.junit;
  */
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.howard.edu.lsp.assignment4.implementation.IntegerSetException;
 import org.howard.edu.lsp.assignment6.integerset.IntegerSet;
@@ -16,10 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * @author barre
