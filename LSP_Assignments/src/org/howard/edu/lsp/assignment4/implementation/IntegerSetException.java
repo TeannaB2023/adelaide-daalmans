@@ -1,5 +1,6 @@
 package org.howard.edu.lsp.assignment4.implementation;
 
+@SuppressWarnings("serial")
 public class IntegerSetException extends Exception {
 	
 	/**
