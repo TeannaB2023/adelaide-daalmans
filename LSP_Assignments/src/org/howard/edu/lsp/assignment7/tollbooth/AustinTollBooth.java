@@ -2,9 +2,13 @@ package org.howard.edu.lsp.assignment7.tollbooth;
 
 public class AustinTollBooth implements TollBooth {
 	// Attributes for Austin Tollbooth
-	private Integer totalTrucks = 0;
-	private Integer totalReceipts = 0;
+	private Integer totalTrucks;
+	private Integer totalReceipts;
 	
+	public AustinTollBooth() {
+		this.totalTrucks = 0;
+		this.totalReceipts = 0;
+	}
 	/** 
 	 * Returns the calculate the toll receipt for a single truck
 	 * also increments the totalTrucks attribute and adds total to totalReceipts

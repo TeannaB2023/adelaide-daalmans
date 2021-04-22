@@ -52,9 +52,11 @@ public class TollBoothTest {
 	@Test
 	@DisplayName("Tests for Display Data method in Toll Booth")
 	public void testDisplayData() {
+		booth.calculateToll(ram);
+		booth.calculateToll(ford);
 		booth.displayData();
 		assertTrue(outputStreamCaptor.toString().contains("*** Collecting receipts  ***\r\n"
-				+ "Totals since the last collection - Receipts: 0 Trucks: 0\r\n"));
+				+ "Totals since the last collection - Receipts: 375 Trucks: 2\r\n"));
 	}
 	
 	@Test
