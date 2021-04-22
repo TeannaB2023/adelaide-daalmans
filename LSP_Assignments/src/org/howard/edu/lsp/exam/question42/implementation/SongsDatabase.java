@@ -1,4 +1,4 @@
-package rg.howard.edu.lsp.exam.question42.implementation;
+package org.howard.edu.lsp.exam.question42.implementation;
 
 import java.util.Arrays;
 import java.util.HashMap;
