@@ -1,4 +1,4 @@
-package org.howard.edu.assignment7.tollbooth;
+package org.howard.edu.lsp.assignment7.tollbooth;
 
 public interface Truck {
 	public Integer getTotalWeight();

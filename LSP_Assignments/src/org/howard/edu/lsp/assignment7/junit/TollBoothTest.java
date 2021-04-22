@@ -1,12 +1,12 @@
-package org.howard.edu.assignment7.junit;
+package org.howard.edu.lsp.assignment7.junit;
 
 import static org.junit.Assert.assertEquals;
 
-import org.howard.edu.assignment7.tollbooth.AustinTollBooth;
-import org.howard.edu.assignment7.tollbooth.FordTruck;
-import org.howard.edu.assignment7.tollbooth.RamTruck;
-import org.howard.edu.assignment7.tollbooth.TollBooth;
-import org.howard.edu.assignment7.tollbooth.Truck;
+import org.howard.edu.lsp.assignment7.tollbooth.AustinTollBooth;
+import org.howard.edu.lsp.assignment7.tollbooth.FordTruck;
+import org.howard.edu.lsp.assignment7.tollbooth.RamTruck;
+import org.howard.edu.lsp.assignment7.tollbooth.TollBooth;
+import org.howard.edu.lsp.assignment7.tollbooth.Truck;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
