@@ -8,6 +8,12 @@ import org.junit.Test;
 
 public class SongsDatabaseTest {
 	
+	final String RAP_SONG1 = "Savage";
+	final String RAP = "Rap";
+	final String RAP_SONG2 = "Gin and Juice";
+	final String JAZZ = "Jazz";
+	final String JAZZ_SONG = "Always There";
+	final String EMPTY_ENTRY = "";
 	
 	@Before
 	public void setUp() throws Exception {
