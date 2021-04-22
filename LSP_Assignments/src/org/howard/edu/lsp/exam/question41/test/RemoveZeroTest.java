@@ -1,4 +1,4 @@
-package rg.howard.edu.lsp.exam.question41.test;
+package org.howard.edu.lsp.exam.question41.test;
 
 import static org.junit.Assert.assertEquals;
 
