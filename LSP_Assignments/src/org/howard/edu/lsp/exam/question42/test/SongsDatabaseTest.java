@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.howard.edu.lsp.assignment4.implementation.IntegerSetException;
 import org.howard.edu.lsp.exam.question42.implementation.SongDatabaseException;
 import org.howard.edu.lsp.exam.question42.implementation.SongsDatabase;
 import org.junit.After;
@@ -46,8 +45,8 @@ public class SongsDatabaseTest {
 		expected.add(RAP_SONG2);
 		assertEquals(expected, songData.getSongs(RAP));
 		
-		songData.addSong(JAZZ, EMPTY_ENTRY);
-		assertEquals(new HashSet<String>(), songData.getSongs(JAZZ));
+		songData.addSong(RAP, EMPTY_ENTRY);
+		assertEquals(expected, songData.getSongs(RAP));
 	}
 	
 	@Test
@@ -61,7 +60,7 @@ public class SongsDatabaseTest {
 		assertEquals(new HashSet<String>(Arrays.asList("Always There")), songData.getSongs(JAZZ));
 		
 		Throwable exception = assertThrows(SongDatabaseException.class, () -> {songData.getSongs(R_AND_B);});
-		assertEquals("Sorry, this song isn't a part of the database in this genre. But you should add it or try again!", exception);
+		assertEquals("Sorry, this song isn't a part of the database in this genre. But you should add it or try again!", exception.getMessage());
 	
 	}
 	
@@ -73,10 +72,11 @@ public class SongsDatabaseTest {
 		songData.addSong(JAZZ, JAZZ_SONG);
 	
 		assertEquals(RAP, songData.getGenreOfSong(RAP_SONG1));
-		assertNotEquals(JAZZ, songData.getSongs(RAP_SONG2));
+		assertNotEquals(JAZZ, songData.getGenreOfSong(RAP_SONG2));
 		
-		Throwable exception = assertThrows(SongDatabaseException.class, () -> {songData.getSongs(EMPTY_ENTRY);});
-		assertEquals("\"Sorry, this song isn't a part of the database. But you should add it!", exception);
-	
+		Throwable exception = assertThrows(SongDatabaseException.class, () -> {songData.getGenreOfSong(EMPTY_ENTRY);});
+		assertEquals("Sorry, this song isn't a part of the database. But you should add it!", exception.getMessage());
+		
+		
 	}
 }
