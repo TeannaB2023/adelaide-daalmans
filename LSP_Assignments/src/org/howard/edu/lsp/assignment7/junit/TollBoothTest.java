@@ -54,7 +54,7 @@ public class TollBoothTest {
 	public void testDisplayData() {
 		booth.displayData();
 		assertTrue(outputStreamCaptor.toString().contains("*** Collecting receipts  ***\r\n"
-				+ "Totals since the last collection - Receipts: 375 Trucks: 2\r\n"));
+				+ "Totals since the last collection - Receipts: 0 Trucks: 0\r\n"));
 	}
 	
 	@Test
